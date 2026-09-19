@@ -1,0 +1,23 @@
+{
+  "name": "crypta",
+  "version": "2.0.0",
+  "description": "Client-Side Encryption & Password Security Toolkit",
+  "main": "app.js",
+  "type": "module",
+  "scripts": {
+    "test": "node tests/run-tests.js",
+    "start": "npx serve ."
+  },
+  "keywords": [
+    "encryption",
+    "web-crypto",
+    "aes-gcm",
+    "pbkdf2",
+    "password-security",
+    "cybersecurity",
+    "client-side",
+    "privacy"
+  ],
+  "author": "Koppineedi Vamsi Lakshmi Satya Kumari",
+  "license": "MIT"
+}

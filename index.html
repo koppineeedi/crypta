@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CRYPTA — Client-Side Encryption & Password Security Toolkit</title>
+    <meta name="description" content="Protect your files. Strengthen your passwords. Keep your secrets private. 100% client-side Web Crypto API encryption, password analysis, and zero-knowledge privacy tools.">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="background-decor">
+        <div class="circle circle-1"></div>
+        <div class="circle circle-2"></div>
+    </div>
+
+    <!-- Main Navigation Bar -->
+    <nav class="app-nav">
+        <div class="nav-container">
+            <div class="brand">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="logo-icon"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                <div class="brand-text">
+                    <span class="brand-title">CRYPTA</span>
+                    <span class="brand-subtitle">Security Toolkit</span>
+                </div>
+            </div>
+            <div class="nav-links">
+                <a href="#" class="nav-link active" data-target-module="dashboard-module">Dashboard</a>
+                <a href="#" class="nav-link" data-target-module="file-module">File Security</a>
+                <a href="#" class="nav-link" data-target-module="password-analyzer-module">Password Analyzer</a>
+                <a href="#" class="nav-link" data-target-module="generator-module">Password Generator</a>
+                <a href="#" class="nav-link" data-target-module="passphrase-module">Passphrase Generator</a>
+                <a href="#" class="nav-link" data-target-module="reuse-module">Password Reuse</a>
+                <a href="#" class="nav-link" data-target-module="privacy-module">Privacy Center</a>
+            </div>
+            <div class="badge-header">
+                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"/><path d="m9 12 2 2 4-4"/></svg>
+                <span>Client-Side Only</span>
+            </div>
+        </div>
+    </nav>
+
+    <main class="app-main-content">
+        
+        <!-- MODULE 0: DASHBOARD -->
+        <section id="dashboard-module" class="module-section active">
+            <div class="hero-banner">
+                <h1 class="hero-title">CRYPTA</h1>
+                <p class="hero-subtitle">Client-Side Encryption & Password Security Toolkit</p>
+                <p class="hero-tagline">"Protect your files. Strengthen your passwords. Keep your secrets private."</p>
+            </div>
+
+            <div class="dashboard-grid">
+                <!-- Card 1: File Encryption -->
+                <div class="card dash-card">
+                    <div class="dash-card-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="11" x="3" y="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+                    </div>
+                    <h3>File Encryption</h3>
+                    <p>Encrypt and decrypt files directly in your browser using modern cryptography (AES-256-GCM + PBKDF2).</p>
+                    <div class="dash-card-actions">
+                        <button type="button" class="btn btn-primary" id="dash-btn-encrypt">Encrypt File</button>
+                        <button type="button" class="btn btn-secondary" id="dash-btn-decrypt">Decrypt File</button>
+                    </div>
+                </div>
+
+                <!-- Card 2: Password Security -->
+                <div class="card dash-card">
+                    <div class="dash-card-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><circle cx="12" cy="10" r="3"/></svg>
+                    </div>
+                    <h3>Password Security</h3>
+                    <p>Analyze password strength, guessability, breach exposure, reuse risk, and multi-scenario attack resistance.</p>
+                    <div class="dash-card-actions">
+                        <button type="button" class="btn btn-primary btn-block" id="dash-btn-analyze">Analyze Password</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Security Principles Checklist -->
+            <div class="card principles-card">
+                <h3>Security Principles</h3>
+                <div class="principles-grid">
+                    <div class="principle-item">
+                        <span class="check-icon">✓</span>
+                        <div>
+                            <strong>Client-Side Processing</strong>
+                            <p>All cryptography and password analysis executes locally in your browser.</p>
+                        </div>
+                    </div>
+                    <div class="principle-item">
+                        <span class="check-icon">✓</span>
+                        <div>
+                            <strong>No Plaintext Password Storage</strong>
+                            <p>Passwords are never stored, logged, or serialized to disk or local storage.</p>
+                        </div>
+                    </div>
+                    <div class="principle-item">
+                        <span class="check-icon">✓</span>
+                        <div>
+                            <strong>No Plaintext File Uploads</strong>
+                            <p>Your files remain strictly on your local device—zero bytes are sent across networks.</p>
+                        </div>
+                    </div>
+                    <div class="principle-item">
+                        <span class="check-icon">✓</span>
+                        <div>
+                            <strong>Modern Cryptography</strong>
+                            <p>Built with browser-native Web Crypto API using AES-256-GCM and PBKDF2 SHA-256.</p>
+                        </div>
+                    </div>
+                    <div class="principle-item">
+                        <span class="check-icon">✓</span>
+                        <div>
+                            <strong>Privacy-First Design</strong>
+                            <p>Breach lookups use k-anonymity SHA-1 prefixes, ensuring zero disclosure.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- MODULE 1: FILE SECURITY -->
+        <section id="file-module" class="module-section hidden">
+            <div class="module-header">
+                <h2>File Security</h2>
+                <p>Secure files locally in your browser with AES-GCM 256-bit encryption.</p>
+            </div>
+
+            <div class="file-security-layout">
+                <div class="card main-form-card">
+                    <!-- Mode Toggle -->
+                    <div class="mode-toggle">
+                        <button type="button" class="toggle-btn active" id="btn-encrypt">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="btn-icon"><rect width="18" height="11" x="3" y="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+                            Encrypt File
+                        </button>
+                        <button type="button" class="toggle-btn" id="btn-decrypt">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="btn-icon"><rect width="18" height="11" x="3" y="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 9.9-1"/></svg>
+                            Decrypt File
+                        </button>
+                    </div>
+
+                    <!-- Main Form -->
+                    <form id="crypto-form">
+                        <!-- Dropzone Area -->
+                        <div class="dropzone" id="dropzone">
+                            <input type="file" id="file-input" class="file-input" />
+                            <div class="dropzone-prompt">
+                                <div class="icon-wrapper">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="upload-icon"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" x2="12" y1="3" y2="15"/></svg>
+                                </div>
+                                <p class="primary-text">Drag & drop your file here or <span class="browse-link">browse</span></p>
+                                <p class="secondary-text">Supports any file type (PDF, Images, ZIP, Documents)</p>
+                            </div>
+                            <div class="dropzone-file-info hidden" id="file-info">
+                                <div class="file-details">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="file-icon"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14 2 14 8 20 8"/></svg>
+                                    <div class="file-meta">
+                                        <span class="file-name" id="info-name">document.pdf</span>
+                                        <span class="file-size" id="info-size">4.2 MB</span>
+                                    </div>
+                                </div>
+                                <button type="button" class="remove-btn" id="btn-remove-file" title="Remove file">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" x2="6" y1="6" y2="18"/><line x1="6" x2="18" y1="6" y2="18"/></svg>
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Password Input Area -->
+                        <div class="input-group">
+                            <label for="password-input">Security Password</label>
+                            <div class="password-wrapper">
+                                <input type="password" id="password-input" placeholder="Enter password to secure file" required autocomplete="current-password" />
+                                <button type="button" class="toggle-password" id="toggle-password" title="Toggle visibility">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="eye-icon"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+                                </button>
+                            </div>
+                            <div class="strength-meter hidden" id="strength-meter">
+                                <div class="strength-bar"><div class="strength-fill" id="strength-fill"></div></div>
+                                <span class="strength-text" id="strength-text">Password Strength</span>
+                            </div>
+                        </div>
+
+                        <!-- Submit Button -->
+                        <button type="submit" class="action-btn" id="action-submit" disabled>
+                            <span id="submit-text">Encrypt File</span>
+                        </button>
+                    </form>
+
+                    <!-- Status & Progress -->
+                    <div class="status-section hidden" id="status-section">
+                        <div class="loader-spinner"></div>
+                        <p class="status-msg" id="status-message">Processing file...</p>
+                        <div class="progress-bar">
+                            <div class="progress-fill" id="progress-fill" style="width: 0%"></div>
+                        </div>
+                    </div>
+
+                    <!-- Download Section -->
+                    <div class="download-section hidden" id="download-section">
+                        <div class="success-icon-wrapper">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="success-icon"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                        </div>
+                        <h3 id="result-title">File Processed Successfully!</h3>
+                        <p class="result-desc" id="result-desc">Your file has been processed locally in your browser.</p>
+                        <a href="#" id="download-link" class="download-btn">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="btn-icon"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" x2="12" y1="15" y2="3"/></svg>
+                            Download Processed File
+                        </a>
+                        <button type="button" class="reset-btn" id="btn-reset">Process Another File</button>
+                    </div>
+                </div>
+
+                <!-- Encryption Security Information Panel -->
+                <div class="card security-info-panel">
+                    <h3>Encryption Security Info</h3>
+                    <ul class="info-list">
+                        <li>
+                            <span class="info-label">Algorithm:</span>
+                            <span class="info-val">AES-256-GCM</span>
+                        </li>
+                        <li>
+                            <span class="info-label">Key Derivation:</span>
+                            <span class="info-val">PBKDF2 (100,000 iterations)</span>
+                        </li>
+                        <li>
+                            <span class="info-label">Hash Algorithm:</span>
+                            <span class="info-val">SHA-256</span>
+                        </li>
+                        <li>
+                            <span class="info-label">Salt:</span>
+                            <span class="info-val">Random 16 bytes per file</span>
+                        </li>
+                        <li>
+                            <span class="info-label">IV / Nonce:</span>
+                            <span class="info-val">Random 12 bytes per file</span>
+                        </li>
+                        <li>
+                            <span class="info-label">Execution:</span>
+                            <span class="info-val">100% Client-Side Web Crypto</span>
+                        </li>
+                        <li>
+                            <span class="info-label">Storage:</span>
+                            <span class="info-val">No server storage / Zero uploads</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- MODULE 2: PASSWORD SECURITY ANALYZER -->
+        <section id="password-analyzer-module" class="module-section hidden">
+            <div class="module-header">
+                <h2>Password Security Analyzer</h2>
+                <p>Analyze structural patterns, guessability, breach exposure, and multi-scenario attack resistance.</p>
+            </div>
+
+            <div class="card">
+                <div class="input-group">
+                    <label for="analyzer-password-input">Enter Password to Analyze</label>
+                    <div class="password-wrapper">
+                        <input type="password" id="analyzer-password-input" placeholder="Type or paste password to evaluate..." />
+                        <button type="button" class="toggle-password" id="analyzer-toggle-password" title="Toggle visibility">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="eye-icon"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Score Display -->
+                <div class="score-display-card">
+                    <div class="score-header">
+                        <div>
+                            <span class="score-title">Crypta Security Estimate</span>
+                            <div class="score-number-wrapper">
+                                <span class="score-big" id="analyzer-score-number">0</span>
+                                <span class="score-denom">/ 100</span>
+                            </div>
+                        </div>
+                        <div id="analyzer-score-rating" class="badge badge-danger">CRITICAL</div>
+                    </div>
+                    <div class="strength-bar mt-2">
+                        <div class="strength-fill" id="analyzer-score-fill" style="width: 0%"></div>
+                    </div>
+                </div>
+
+                <!-- Properties Grid -->
+                <div class="properties-section mt-4">
+                    <h4>Password Properties</h4>
+                    <div class="props-grid">
+                        <div class="prop-item">
+                            <span class="prop-key">Length:</span>
+                            <span class="prop-val" id="prop-length">0 characters</span>
+                        </div>
+                        <div class="prop-item">
+                            <span class="prop-key">Uppercase:</span>
+                            <span class="prop-val" id="prop-upper">✗ Missing</span>
+                        </div>
+                        <div class="prop-item">
+                            <span class="prop-key">Lowercase:</span>
+                            <span class="prop-val" id="prop-lower">✗ Missing</span>
+                        </div>
+                        <div class="prop-item">
+                            <span class="prop-key">Numbers:</span>
+                            <span class="prop-val" id="prop-digit">✗ Missing</span>
+                        </div>
+                        <div class="prop-item">
+                            <span class="prop-key">Symbols:</span>
+                            <span class="prop-val" id="prop-symbol">✗ Missing</span>
+                        </div>
+                        <div class="prop-item">
+                            <span class="prop-key">Repeated Patterns:</span>
+                            <span class="prop-val" id="prop-repeated">None</span>
+                        </div>
+                        <div class="prop-item">
+                            <span class="prop-key">Dictionary Match:</span>
+                            <span class="prop-val" id="prop-dict">None</span>
+                        </div>
+                        <div class="prop-item">
+                            <span class="prop-key">Predictable Pattern:</span>
+                            <span class="prop-val" id="prop-pattern">Low</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Attack Resistance Table -->
+                <div class="attack-section mt-4">
+                    <h4>Attack Resistance</h4>
+                    <table class="attack-table">
+                        <thead>
+                            <tr>
+                                <th>Attack Scenario</th>
+                                <th>Assumed Attack Rate</th>
+                                <th>Resistance Rating</th>
+                                <th>Estimated Time Range</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Online Throttled Attack</td>
+                                <td>~100 attempts / min</td>
+                                <td><span id="attack-online-val" class="badge badge-danger">LOW</span></td>
+                                <td><span id="attack-online-time">Instant</span></td>
+                            </tr>
+                            <tr>
+                                <td>Offline Fast-Hash Attack</td>
+                                <td>~10^10 hashes / sec</td>
+                                <td><span id="attack-fast-val" class="badge badge-danger">LOW</span></td>
+                                <td><span id="attack-fast-time">Instant</span></td>
+                            </tr>
+                            <tr>
+                                <td>Offline Slow Password-Hash Attack</td>
+                                <td>~10,000 hashes / sec</td>
+                                <td><span id="attack-slow-val" class="badge badge-danger">LOW</span></td>
+                                <td><span id="attack-slow-time">Instant</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Breach Exposure Check -->
+                <div class="breach-section mt-4">
+                    <h4>Breach Exposure Check</h4>
+                    <p class="text-muted small">Crypta uses Have I Been Pwned k-Anonymity API (sending only 5-character SHA-1 prefix over HTTPS). Your plaintext password is NEVER transmitted.</p>
+                    <button type="button" class="btn btn-secondary mt-2" id="btn-run-breach-check">Run Privacy-Preserving Breach Check</button>
+                    <div id="breach-result-area" class="mt-2"></div>
+                </div>
+
+                <!-- Strengths & Weaknesses Breakdown -->
+                <div class="findings-grid mt-4">
+                    <div>
+                        <h4>Detected Weaknesses</h4>
+                        <ul id="analyzer-weaknesses-list" class="findings-list"></ul>
+                    </div>
+                    <div>
+                        <h4>Itemized Strengths</h4>
+                        <ul id="analyzer-strengths-list" class="findings-list"></ul>
+                    </div>
+                </div>
+
+                <!-- Recommendations -->
+                <div class="recommendations-section mt-4">
+                    <h4>Actionable Security Recommendations</h4>
+                    <div class="advice-grid">
+                        <div>
+                            <h5>For Users</h5>
+                            <ul id="analyzer-recommendations-list" class="advice-list"></ul>
+                        </div>
+                        <div>
+                            <h5>For Developers</h5>
+                            <ul id="analyzer-dev-advice-list" class="advice-list"></ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- MODULE 3: PASSWORD GENERATOR -->
+        <section id="generator-module" class="module-section hidden">
+            <div class="module-header">
+                <h2>Cryptographic Password Generator</h2>
+                <p>Generate non-deterministic passwords using <code>crypto.getRandomValues()</code>.</p>
+            </div>
+
+            <div class="card">
+                <div class="generator-output-box">
+                    <input type="text" id="gen-password-output" class="code-output" readonly />
+                    <button type="button" class="btn btn-primary" id="btn-copy-password">Copy</button>
+                </div>
+
+                <div class="gen-meta-row mt-2">
+                    <span>Generated Strength: <strong id="gen-pwd-strength-rating">Very Strong</strong> (<span id="gen-pwd-strength-score">100/100</span>)</span>
+                    <span class="text-success">✓ Uses crypto.getRandomValues()</span>
+                </div>
+
+                <div class="gen-controls mt-4">
+                    <div class="control-row">
+                        <label for="gen-length-slider">Length: <span id="gen-length-val">16</span> characters</label>
+                        <input type="range" id="gen-length-slider" min="12" max="32" value="16" step="1" />
+                    </div>
+
+                    <div class="checkbox-grid mt-3">
+                        <label><input type="checkbox" id="gen-chk-upper" checked /> Uppercase (A-Z)</label>
+                        <label><input type="checkbox" id="gen-chk-lower" checked /> Lowercase (a-z)</label>
+                        <label><input type="checkbox" id="gen-chk-digits" checked /> Numbers (0-9)</label>
+                        <label><input type="checkbox" id="gen-chk-symbols" checked /> Symbols (!@#$%^&*)</label>
+                        <label><input type="checkbox" id="gen-chk-ambiguous" checked /> Avoid Ambiguous (l, 1, I, O, 0)</label>
+                    </div>
+
+                    <button type="button" class="btn btn-secondary mt-4 btn-block" id="btn-generate-password">Generate New Password</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- MODULE 4: PASSPHRASE GENERATOR -->
+        <section id="passphrase-module" class="module-section hidden">
+            <div class="module-header">
+                <h2>Diceware Passphrase Generator</h2>
+                <p>Create long, memorable, high-entropy passphrases from curated EFF wordlists.</p>
+            </div>
+
+            <div class="card">
+                <div class="generator-output-box">
+                    <input type="text" id="gen-passphrase-output" class="code-output" readonly />
+                    <button type="button" class="btn btn-primary" id="btn-copy-passphrase">Copy</button>
+                </div>
+
+                <div class="gen-meta-row mt-2">
+                    <span>Passphrase Strength: <strong id="gen-pass-strength-rating">Very Strong</strong> (<span id="gen-pass-strength-score">95/100</span>)</span>
+                    <span class="text-muted">Easy to remember, resistant to brute-force</span>
+                </div>
+
+                <div class="gen-controls mt-4">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="gen-pass-words">Number of Words</label>
+                            <select id="gen-pass-words" class="form-control">
+                                <option value="4" selected>4 Words (Strong)</option>
+                                <option value="5">5 Words (Very Strong)</option>
+                                <option value="6">6 Words (Maximum Security)</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="gen-pass-separator">Word Separator</label>
+                            <select id="gen-pass-separator" class="form-control">
+                                <option value="-" selected>Hyphen (-)</option>
+                                <option value="_">Underscore (_)</option>
+                                <option value=" ">Space ( )</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="checkbox-grid mt-3">
+                        <label><input type="checkbox" id="gen-pass-chk-number" /> Append Random Digit</label>
+                        <label><input type="checkbox" id="gen-pass-chk-symbol" /> Append Random Symbol</label>
+                    </div>
+
+                    <button type="button" class="btn btn-secondary mt-4 btn-block" id="btn-generate-passphrase">Generate Passphrase</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- MODULE 5: PASSWORD REUSE CHECKER -->
+        <section id="reuse-module" class="module-section hidden">
+            <div class="module-header">
+                <h2>Password Reuse Checker</h2>
+                <p>Verify whether you are reusing identical passwords across multiple online accounts.</p>
+            </div>
+
+            <div class="card">
+                <form class="reuse-form">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="reuse-account-input">Account Name</label>
+                            <input type="text" id="reuse-account-input" placeholder="e.g. GitHub, Gmail, Bank" />
+                        </div>
+                        <div class="form-group">
+                            <label for="reuse-password-input">Account Password</label>
+                            <input type="password" id="reuse-password-input" placeholder="Enter password..." />
+                        </div>
+                    </div>
+                    <button type="button" class="btn btn-primary mt-2" id="btn-add-reuse-entry">Add Account Entry</button>
+                </form>
+
+                <div id="reuse-alert-box" class="mt-4"></div>
+
+                <div class="table-responsive mt-3">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Account</th>
+                                <th>Password Status</th>
+                                <th class="text-right">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody id="reuse-table-body"></tbody>
+                    </table>
+                </div>
+
+                <p class="text-muted small mt-3">🔒 Session processing only. Passwords entered here exist only in browser memory during this tab session and are never saved or sent to any server.</p>
+            </div>
+        </section>
+
+        <!-- MODULE 6: PRIVACY CENTER -->
+        <section id="privacy-module" class="module-section hidden">
+            <div class="module-header">
+                <h2>Privacy & Security Center</h2>
+                <p>Transparent explanation of Crypta's security model, cryptographic guarantees, and educational guidance.</p>
+            </div>
+
+            <div class="privacy-grid">
+                <!-- What Crypta DOES DO -->
+                <div class="card">
+                    <h3>Crypta Security Architecture</h3>
+                    <ul class="check-list">
+                        <li><strong>Local Browser Execution:</strong> Cryptography runs inside Web Crypto API.</li>
+                        <li><strong>Authenticated Encryption:</strong> Uses AES-GCM (256-bit) to prevent tampering.</li>
+                        <li><strong>Hardened Key Derivation:</strong> PBKDF2 with SHA-256 and 100,000 iterations.</li>
+                        <li><strong>Cryptographically Secure Randomness:</strong> Random salt & IV generated via <code>crypto.getRandomValues()</code>.</li>
+                        <li><strong>Privacy-Preserving Breach Lookups:</strong> Transmits only 5 hex characters of SHA-1 hash via k-anonymity.</li>
+                    </ul>
+                </div>
+
+                <!-- What Crypta DOES NOT DO -->
+                <div class="card border-left-danger">
+                    <h3>What Crypta Does NOT Do</h3>
+                    <ul class="cross-list">
+                        <li>❌ Does NOT store your plaintext passwords anywhere.</li>
+                        <li>❌ Does NOT upload your plaintext files to external servers.</li>
+                        <li>❌ Does NOT send plaintext passwords to breach check APIs.</li>
+                        <li>❌ Does NOT use insecure <code>Math.random()</code> for key or password generation.</li>
+                        <li>❌ Does NOT log or serialize passwords to local or session storage.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Educational Accordion -->
+            <div class="card mt-4">
+                <h3>Cybersecurity Knowledge Base</h3>
+                <div class="accordion">
+                    <div class="accordion-item">
+                        <div class="accordion-header">What does password strength mean?</div>
+                        <div class="accordion-content">
+                            Password strength measures a password's resistance to automated guessing attacks. It is primarily driven by password length, entropy (randomness), and the absence of predictable patterns.
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <div class="accordion-header">What is a dictionary attack?</div>
+                        <div class="accordion-content">
+                            A dictionary attack uses automated software to test millions of common words, names, dictionary combinations, and leet-speak substitutions against password hashes.
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <div class="accordion-header">What is an offline attack?</div>
+                        <div class="accordion-content">
+                            An offline attack occurs when an attacker obtains a database of hashed passwords and uses dedicated multi-GPU hardware to compute trillions of guesses per second without network throttling.
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <div class="accordion-header">Why is password reuse dangerous?</div>
+                        <div class="accordion-content">
+                            If an attacker breaches one service where you reused a password, they will attempt automated "credential stuffing" attacks against hundreds of other websites using the same email and password combination.
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <div class="accordion-header">What is k-Anonymity breach checking?</div>
+                        <div class="accordion-content">
+                            k-Anonymity ensures privacy by hashing your password with SHA-1 locally, and sending only the first 5 characters of the hash to the Have I Been Pwned server. The server responds with thousands of hash suffixes sharing those 5 prefix characters, allowing your browser to match the remaining characters locally without disclosing your password.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="app-footer">
+        <div class="footer-container">
+            <p><strong>CRYPTA</strong> — Client-Side File Encryption & Password Security Toolkit</p>
+            <p class="footer-sub">All cryptographic and security analysis operations are performed locally in your browser using the native Web Crypto API. Zero server storage.</p>
+        </div>
+    </footer>
+
+    <!-- Main ES Module Entry Point -->
+    <script type="module" src="app.js"></script>
+</body>
+</html>

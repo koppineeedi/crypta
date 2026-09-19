@@ -8,8 +8,46 @@ All cryptographic operations and security analyses execute 100% locally inside y
 
 ---
 
+## 🚀 What Was Updated in Version 2.0 (Upgrade Summary)
+
+Crypta was transformed from a basic single-card file encryptor into a full-scale **Client-Side Encryption & Password Security Toolkit**:
+
+1. **Modular Code Architecture**:
+   - Restructured monolithic JavaScript into modular ES6 components (`src/crypto/`, `src/password/`, `src/ui/`, `src/utils/`).
+   - Centralized cryptographic constants in `SECURITY_CONFIG` (`src/crypto/securityConfig.js`).
+
+2. **100% Backward Compatibility**:
+   - Preserved the binary file header format (`CRYPTA` magic bytes + filename metadata + 16B salt + 12B IV + AES-GCM ciphertext). Files previously encrypted with Crypta decrypt seamlessly.
+
+3. **Advanced Password Security Engine**:
+   - Replaced simple character counter with a 20-parameter structural pattern detection engine (`analyzePassword`).
+   - Added explainable 0–100 Crypta Security Estimate scoring with itemized strengths (`+`) and weaknesses (`⚠`).
+   - Implemented 3-scenario attack resistance models (Online Rate-Limited, Offline Fast Hash, Offline Slow KDF) with explicit assumptions and explanatory modals.
+
+4. **Privacy-Preserving Breach Exposure Check**:
+   - Built k-Anonymity HIBP API integration (`src/password/breachCheck.js`).
+   - Hashes passwords locally via SHA-1, sends ONLY the 5-character prefix over HTTPS, and matches remaining hex suffix in browser memory.
+   - Robust error handling: network failures report `"Breach check unavailable"` rather than assuming the password is safe.
+
+5. **Local Password Reuse Tracker**:
+   - In-memory session tracking for multi-account password reuse warnings (`src/password/reuseDetection.js`). Zero storage or cloud syncing.
+
+6. **Cryptographically Secure Generators**:
+   - Password Generator (`src/password/generator.js`) using `crypto.getRandomValues()` with length sliders (12–32), character filters, and ambiguous character avoidance.
+   - Diceware Passphrase Generator (`src/password/passphraseGenerator.js`) using curated EFF wordlists (~7776 words).
+
+7. **Cybersecurity SaaS UI & Dashboard**:
+   - Redesigned interface with dark theme, glassmorphic cards, navigation router, Encryption Security Info panel, and Privacy & Security Center with educational knowledge base.
+
+8. **Automated Unit Testing & Security Documentation**:
+   - Added 14 unit tests (`npm test`) covering cryptography, scoring, generators, and breach/reuse logic.
+   - Added `THREAT_MODEL.md` and `SECURITY.md` documenting security controls, trust boundaries, and vulnerability disclosure policies.
+
+---
+
 ## 📑 Table of Contents
 - [📖 Overview](#-overview)
+- [🚀 What Was Updated in Version 2.0](#-what-was-updated-in-version-20-upgrade-summary)
 - [✨ Key Features](#-key-features)
 - [🏗️ System Architecture](#️-system-architecture)
 - [🔒 File Security Module](#-file-security-module)

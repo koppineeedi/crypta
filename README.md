@@ -1,6 +1,7 @@
 # 🔐 CRYPTA — Client-Side Encryption & Password Security Toolkit
 
 > **Protect your files. Strengthen your passwords. Keep your secrets private.**
+🌐 Live Demo: https://crypta-gamma.vercel.app/
 
 Crypta is a privacy-first, browser-native cybersecurity toolkit combining military-grade **AES-256-GCM file encryption** with an explainable **password security engine**, **k-anonymity breach detection**, **session-based password reuse analysis**, and cryptographically secure **password/passphrase generators**.
 
